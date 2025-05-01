@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { SunIcon, MoonIcon, MagnifyingGlassIcon, Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { ref, onMounted } from 'vue'
+import { useRouter, useRoute, RouterLink } from 'vue-router'
+import { SunIcon, MoonIcon, MagnifyingGlassIcon, Bars3Icon, XMarkIcon, ShoppingBagIcon, BoltIcon, TicketIcon } from '@heroicons/vue/24/outline'
+import { onClickOutside } from '@vueuse/core'
 
 // Define incoming props
 type EmitEvents = {
@@ -11,15 +12,21 @@ const props = defineProps<{ isDarkMode: boolean }>()
 const emit = defineEmits<EmitEvents>()
 
 const router = useRouter()
+const route = useRoute()
+
 const mobileMenuOpen = ref(false)
 const searchQuery = ref('')
 const searchOpen = ref(false)
 
-const categories = [
-  { name: 'Clothes', path: '/category/clothes' },
-  { name: 'Shoes', path: '/category/shoes' },
-  { name: 'Bags', path: '/category/bags' }
-]
+// Reference for mobile nav, to detect outside clicks
+const mobileNavRef = ref<HTMLElement | null>(null)
+
+// Close mobile menu when clicking outside
+onMounted(() => {
+  onClickOutside(mobileNavRef, () => {
+    mobileMenuOpen.value = false
+  })
+})
 
 /** Emit dark mode toggle event */
 function toggleDarkMode() {
@@ -45,13 +52,19 @@ function toggleSearch() {
 function handleSearch() {
   const query = searchQuery.value.trim()
   if (query) {
-    // Normalize category path
     const cat = query.toLowerCase() === 'clothing' ? 'clothes' : query.toLowerCase()
     router.push({ path: `/category/${cat}`, query: { search: query } })
     searchQuery.value = ''
     searchOpen.value = false
+    mobileMenuOpen.value = false
   }
 }
+
+const categories = [
+  { name: 'Clothes', path: '/category/clothes', icon: BoltIcon },
+  { name: 'Shoes', path: '/category/shoes', icon: ShoppingBagIcon },
+  { name: 'Bags', path: '/category/bags', icon: TicketIcon }
+]
 </script>
 
 <template>
@@ -60,28 +73,36 @@ function handleSearch() {
       <div class="flex justify-between items-center py-4">
         <!-- Logo -->
         <div class="flex-shrink-0">
-          <router-link to="/" class="flex items-center">
-            <span class="text-2xl font-heading font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent">LUXE</span>
-            <span class="ml-1 text-2xl font-heading font-light text-accent-500">Style</span>
-          </router-link>
+          <RouterLink to="/" class="flex items-center">
+            <span class="text-2xl font-heading font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent">AMA</span>
+            <span class="ml-1 text-2xl font-heading font-light text-accent-500">BlinkzStore</span>
+          </RouterLink>
         </div>
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-8">
-          <router-link
-            v-for="category in categories"
-            :key="category.name"
-            :to="category.path"
-            class="font-medium text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 transition-colors duration-200"
+          <RouterLink
+            v-for="cat in categories"
+            :key="cat.name"
+            :to="cat.path"
+            class="flex items-center font-medium transition-colors duration-200"
+            :class="route.path === cat.path ? 'router-link-exact-active text-primary-600 dark:text-primary-400' : 'text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400'"
+            active-class="router-link-exact-active"
+            exact
           >
-            {{ category.name }}
-          </router-link>
-          <router-link
+            <component :is="cat.icon" class="h-5 w-5 mr-1" />
+            {{ cat.name }}
+          </RouterLink>
+          <RouterLink
             to="/contact"
-            class="font-medium text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400 transition-colors duration-200"
+            class="flex items-center font-medium transition-colors duration-200"
+            :class="route.path === '/contact' ? 'router-link-exact-active text-primary-600 dark:text-primary-400' : 'text-secondary-600 hover:text-primary-600 dark:text-secondary-300 dark:hover:text-primary-400'"
+            active-class="router-link-exact-active"
+            exact
           >
+            <component :is="ShoppingBagIcon" class="h-5 w-5 mr-1" />
             Contact
-          </router-link>
+          </RouterLink>
         </nav>
 
         <!-- Icons -->
@@ -123,24 +144,32 @@ function handleSearch() {
       </div>
 
       <!-- Mobile Navigation Menu -->
-      <div v-if="mobileMenuOpen" class="md:hidden border-t border-secondary-200 dark:border-secondary-700 animate-slide-down">
+      <div v-if="mobileMenuOpen" ref="mobileNavRef" class="md:hidden border-t border-secondary-200 dark:border-secondary-700 animate-slide-down">
         <div class="pt-2 pb-4 space-y-1">
-          <router-link
-            v-for="category in categories"
-            :key="category.name"
-            :to="category.path"
-            class="block px-4 py-2 text-base font-medium text-secondary-600 hover:bg-secondary-100 dark:text-secondary-300 dark:hover:bg-secondary-800 transition-colors duration-200"
+          <RouterLink
+            v-for="cat in categories"
+            :key="cat.name"
+            :to="cat.path"
+            class="flex items-center px-4 py-2 text-base font-medium transition-colors duration-200"
+            :class="route.path === cat.path ? 'bg-secondary-100 dark:bg-secondary-800 text-primary-600 dark:text-primary-400' : 'text-secondary-600 hover:bg-secondary-100 dark:text-secondary-300 dark:hover:bg-secondary-800'"
             @click="mobileMenuOpen = false"
+            active-class="router-link-exact-active"
+            exact
           >
-            {{ category.name }}
-          </router-link>
-          <router-link
+            <component :is="cat.icon" class="h-5 w-5 mr-1" />
+            {{ cat.name }}
+          </RouterLink>
+          <RouterLink
             to="/contact"
-            class="block px-4 py-2 text-base font-medium text-secondary-600 hover:bg-secondary-100 dark:text-secondary-300 dark:hover:bg-secondary-800 transition-colors duration-200"
+            class="flex items-center px-4 py-2 text-base font-medium transition-colors duration-200"
+            :class="route.path === '/contact' ? 'bg-secondary-100 dark:bg-secondary-800 text-primary-600 dark:text-primary-400' : 'text-secondary-600 hover:bg-secondary-100 dark:text-secondary-300 dark:hover:bg-secondary-800'"
             @click="mobileMenuOpen = false"
+            active-class="router-link-exact-active"
+            exact
           >
+            <component :is="ShoppingBagIcon" class="h-5 w-5 mr-1" />
             Contact
-          </router-link>
+          </RouterLink>
         </div>
       </div>
     </div>

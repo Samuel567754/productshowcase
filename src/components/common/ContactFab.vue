@@ -28,7 +28,7 @@ const toggleOpen = () => {
     <div v-if="isOpen" class="absolute bottom-16 right-0 flex flex-col items-end space-y-2 animate-fade-in">
       <!-- WhatsApp -->
       <a
-        href="https://wa.me/1234567890"
+        href="https://wa.me/233249998055"
         target="_blank"
         class="flex items-center bg-green-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-green-600 transition-colors"
       >
@@ -40,7 +40,7 @@ const toggleOpen = () => {
 
       <!-- Phone -->
       <a
-        href="tel:+11234567890"
+        href="tel:+233249998055"
         class="flex items-center bg-primary-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-primary-700 transition-colors"
       >
         <span class="mr-2">Call</span>
@@ -49,7 +49,7 @@ const toggleOpen = () => {
 
       <!-- Email -->
       <a
-        href="mailto:contact@luxestyle.com"
+        href="ama3blinki@gmail.com"
         class="flex items-center bg-secondary-700 text-white px-4 py-2 rounded-full shadow-md hover:bg-secondary-800 transition-colors"
       >
         <span class="mr-2">Email</span>

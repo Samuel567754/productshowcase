@@ -6,7 +6,7 @@
     <div class="container-custom">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
-          <h3 class="text-xl font-bold text-white mb-4">LUXE Style</h3>
+          <h3 class="text-xl font-bold text-white mb-4">AMA BlinkzStore</h3>
           <p class="text-secondary-300 mb-4">Premium fashion for the modern individual. Quality products that stand the test of time.</p>
           <div class="flex space-x-4">
             <a href="#" class="text-secondary-300 hover:text-accent-400 transition-colors">
@@ -71,7 +71,7 @@
       </div>
       
       <div class="border-t border-secondary-800 mt-8 pt-8 text-center text-secondary-400">
-        <p>&copy; {{ new Date().getFullYear() }} LUXE Style. All rights reserved.</p>
+        <p>&copy; {{ new Date().getFullYear() }} AMA BlinkzStore. All rights reserved.</p>
       </div>
     </div>
   </footer>

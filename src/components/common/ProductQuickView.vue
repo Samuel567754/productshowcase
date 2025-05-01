@@ -208,7 +208,7 @@ const discountPercent = computed(() => {
             </h4>
 
             <a
-              href="https://wa.me/1234567890?text=I'm%20interested%20in%20the%20product:%20"
+              href="https://wa.me/233249998055?text=I'm%20interested%20in%20the%20product:%20"
               target="_blank"
               class="flex items-center justify-center w-full py-2 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             >
@@ -217,7 +217,7 @@ const discountPercent = computed(() => {
             </a>
 
             <a
-              href="tel:+11234567890"
+              href="tel:+233249998055"
               class="flex items-center justify-center w-full py-2 px-4 rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             >
               <!-- Phone SVG omitted for brevity -->

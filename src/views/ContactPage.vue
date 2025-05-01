@@ -9,7 +9,7 @@
       <div
         class="container-custom relative z-10 flex flex-col items-center justify-center h-full text-center text-white"
       >
-        <h1 class="text-5xl font-extrabold mb-4 drop-shadow-lg">
+        <h1 class="text-3xl font-extrabold mb-4 drop-shadow-lg">
           Discover Your Style
         </h1>
         <p class="text-xl mb-6 drop-shadow-md">
@@ -230,10 +230,10 @@
                         Phone
                       </p>
                       <a
-                        href="tel:+11234567890"
+                        href="tel:+233249998055"
                         class="text-secondary-600 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400"
                       >
-                        +1 (123) 456-7890
+                        +233 24 999 8055
                       </a>
                     </div>
                   </li>
@@ -246,10 +246,10 @@
                         Email
                       </p>
                       <a
-                        href="mailto:info@luxestyle.com"
+                        href="ama3blinki@gmail.com"
                         class="text-secondary-600 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400"
                       >
-                        info@luxestyle.com
+                        ama3blinki@gmail.com
                       </a>
                     </div>
                   </li>
@@ -262,9 +262,10 @@
                         Address
                       </p>
                       <p class="text-secondary-600 dark:text-secondary-400">
-                        123 Fashion Street<br />
-                        Style City, 12345<br />
-                        United States
+                        Kejetia Dubai Market<br />
+                        Down Flooor<br />
+                        Store No: G-0841<br />
+                        Ghana, Adum Kumasi
                       </p>
                     </div>
                   </li>
@@ -321,15 +322,15 @@
                   <ul class="space-y-1 text-sm">
                     <li class="flex justify-between">
                       <span>Monday - Friday:</span>
-                      <span>9:00 AM - 8:00 PM</span>
+                      <span>8:00 AM - 6:00 PM</span>
                     </li>
                     <li class="flex justify-between">
                       <span>Saturday:</span>
-                      <span>10:00 AM - 6:00 PM</span>
+                      <span>8:00 AM - 6:00 PM</span>
                     </li>
                     <li class="flex justify-between">
                       <span>Sunday:</span>
-                      <span>Closed</span>
+                      <span>1:00 PM - 5:30 PM</span>
                     </li>
                   </ul>
                 </div>
